@@ -12,25 +12,44 @@ emptyButton.addEventListener("click", emptyData)
 
 function addData(){    
     event.preventDefault()
+
+    let nameIndex = checkNames(formName.value)
     let newRow = document.createElement("tr")
+    if (nameIndex != -1) {
+        table.rows.item(index)
 
-    let newName = document.createElement("td")
-    newName.innerText = formName.value
-    newRow.appendChild(newName)
+        let newEmail = document.createElement("td")
+        newEmail.innerText = formEmail.value
+        newRow.appendChild(newEmail)
 
-    let newEmail = document.createElement("td")
-    newEmail.innerText = formEmail.value
-    newRow.appendChild(newEmail)
+        let newAdmin = document.createElement("td")
+        if (formAdmin.checked) {
+            newAdmin.textContent = "X"
+        } else {
+            newAdmin.textContent = "-"
+        }
+        newRow.appendChild(newAdmin)
 
-    let newAdmin = document.createElement("td")
-    if (formAdmin.checked) {
-        newAdmin.textContent = "X"
+        table.appendChild(newRow)
     } else {
-        newAdmin.textContent = "-"
-    }
-    newRow.appendChild(newAdmin)
+        let newName = document.createElement("td")
+        newName.innerText = formName.value
+        newRow.appendChild(newName)
 
-    table.appendChild(newRow)
+        let newEmail = document.createElement("td")
+        newEmail.innerText = formEmail.value
+        newRow.appendChild(newEmail)
+
+        let newAdmin = document.createElement("td")
+        if (formAdmin.checked) {
+            newAdmin.textContent = "X"
+        } else {
+            newAdmin.textContent = "-"
+        }
+        newRow.appendChild(newAdmin)
+
+        table.appendChild(newRow)
+    }
 }
 
 function emptyData(){
@@ -40,4 +59,15 @@ function emptyData(){
     for (let index = 0; index < length; index++) {
         table.deleteRow(0)
     }
+}
+
+function checkNames(name){
+
+    let length = table.rows.length
+    for (let index = 0; index < length; index++) {
+        if (table.rows.item(index).firstChild.innerText == name) {
+            return index
+        } 
+    }
+    return -1
 }
