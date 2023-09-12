@@ -47,9 +47,7 @@ function addData(){
             newAdmin.textContent = "-"
         }
         newRow.appendChild(newAdmin)
-
-        table.appendChild(newRow)
-
+        
         let imageLocation = URL.createObjectURL(new File(fileInput.files, "img"))
         let newImageCell = document.createElement("td")
         let newImage = document.createElement("img")
@@ -58,6 +56,10 @@ function addData(){
         newImage.height = "64"
         newImageCell.appendChild(newImage)
         newRow.appendChild(newImageCell)
+
+        table.appendChild(newRow)
+
+
     }
 }
 
