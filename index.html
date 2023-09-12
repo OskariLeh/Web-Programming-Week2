@@ -9,12 +9,12 @@
 <body>
     <table>
         <thead>
-            <tr><th>Username</th><th>Email</th><th>Admin</th></tr>
+            <tr><th>Username</th><th>Email</th><th>Admin</th><th>Image</th></tr>
         </thead>
         <tbody>
-            <tr><td>Bille</td><td>bille@email.com</td><td>X</td></tr>
-            <tr><td>Ville</td><td>ville@email.com</td><td>-</td></tr>
-            <tr><td>Dille</td><td>dille@email.com</td><td>-</td></tr>
+            <tr><td>Bille</td><td>bille@email.com</td><td>X</td><td><img></td></tr>
+            <tr><td>Ville</td><td>ville@email.com</td><td>-</td><td><img></td></tr>
+            <tr><td>Dille</td><td>dille@email.com</td><td>-</td><td><img></td></tr>
         </tbody>
     </table>
 
@@ -29,6 +29,9 @@
 
             <label for="input-admin">Admin</label>
             <input type="checkbox" name="input-admin" id="input-admin">
+
+            <label for="input-image">Image</label>
+            <input type="file" name="input-image" id="input-image">
         </fieldset>
         <button id="submit-data">Submit data</button>
         <button id="empty-table">Empty data</button>

@@ -4,34 +4,34 @@ const emptyButton = document.getElementById("empty-table")
 let formName = document.getElementById("input-username")
 let formEmail = document.getElementById("input-email")
 let formAdmin = document.getElementById("input-admin")
+let fileInput = document.getElementById("input-image")
 let table = document.querySelector("tbody")
 
 submitButton.addEventListener("click", addData)
 emptyButton.addEventListener("click", emptyData)
 
-
 function addData(){    
     event.preventDefault()
 
     let nameIndex = checkNames(formName.value)
-    let newRow = document.createElement("tr")
+    
     if (nameIndex != -1) {
-        table.rows.item(index)
+        table.rows.item(nameIndex).childNodes[1].textContent = formEmail.value
 
-        let newEmail = document.createElement("td")
-        newEmail.innerText = formEmail.value
-        newRow.appendChild(newEmail)
-
-        let newAdmin = document.createElement("td")
         if (formAdmin.checked) {
-            newAdmin.textContent = "X"
+            table.rows.item(nameIndex).childNodes[2].textContent = "X"
         } else {
-            newAdmin.textContent = "-"
+            table.rows.item(nameIndex).childNodes[2].textContent = "-"
         }
-        newRow.appendChild(newAdmin)
 
-        table.appendChild(newRow)
+        let imageLocation = URL.createObjectURL(new File(fileInput.files, "img"))
+        table.rows.item(nameIndex).childNodes[3].firstChild.src = imageLocation
+        table.rows.item(nameIndex).childNodes[3].firstChild.width = "64"
+        table.rows.item(nameIndex).childNodes[3].firstChild.height = "64"
+        
     } else {
+        let newRow = document.createElement("tr")
+
         let newName = document.createElement("td")
         newName.innerText = formName.value
         newRow.appendChild(newName)
@@ -49,6 +49,15 @@ function addData(){
         newRow.appendChild(newAdmin)
 
         table.appendChild(newRow)
+
+        let imageLocation = URL.createObjectURL(new File(fileInput.files, "img"))
+        let newImageCell = document.createElement("td")
+        let newImage = document.createElement("img")
+        newImage.src = imageLocation
+        newImage.width = "64"
+        newImage.height = "64"
+        newImageCell.appendChild(newImage)
+        newRow.appendChild(newImageCell)
     }
 }
 
